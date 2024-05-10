@@ -1,35 +1,39 @@
 import 'package:country_list/controller/country_provider.dart';
+import 'package:country_list/controller/search_provider.dart';
 import 'package:country_list/view/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(
-    ChangeNotifierProvider(
-      create: (context) => CountryProvider(),
-      child: const MyApp(),
-    ),
+  runApp( MyApp(),
+    
   );
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-       
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => SearchProvider()),
+        ChangeNotifierProvider(create: (_) => CountryProvider()),
+      ],
+      child: MaterialApp(
+        title: 'Your App Title',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: ChangeNotifierProvider(
+          create: (_) => SearchProvider(),
+          builder: (context, child) => HomeScreen(),
+        ),
       ),
-      home:  const HomeScreen(),
     );
   }
 }
+
 
 
   

@@ -5,6 +5,7 @@ class Country {
   final String region;
   final String flag;
   final String continent;
+  final String description;
 
   Country({
     required this.name,
@@ -13,6 +14,7 @@ class Country {
     required this.region,
     required this.flag,
      required this.continent,
+        required this.description,
   });
 
   factory Country.fromJson(Map<String, dynamic> json) {
@@ -24,7 +26,8 @@ class Country {
         population: json['population'],
         region: json['region'],
         flag: json['flags']['png'],
-        continent: continent,
+        continent: continent, 
+        description:  json['flags']['alt']??"no data",
       );
 }
 }
