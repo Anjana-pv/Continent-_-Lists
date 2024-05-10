@@ -21,7 +21,7 @@ To get started with this project, follow these steps:
 
 - `provider` for state management.
 - `http` for making HTTP requests.
-- `connectivity` for checking internet connectivity.
+
 
 
 ## Contributing
